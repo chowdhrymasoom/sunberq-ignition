@@ -9,7 +9,7 @@ export function Footer() {
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-4">
           <div>
-            <Logo />
+            <Logo variant="light" />
             <p className="mt-4 text-sm text-white/70 leading-relaxed max-w-xs">
               Powering India with smarter solar energy. Panels, inverters and batteries engineered for the future.
             </p>

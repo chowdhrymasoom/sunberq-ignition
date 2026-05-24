@@ -1,5 +1,5 @@
 import { Link } from "@tanstack/react-router";
-import { Mail, Phone, MapPin, Linkedin, Instagram, Facebook } from "lucide-react";
+import { Mail, Phone, MapPin, Globe, Share2, AtSign } from "lucide-react";
 import { Logo } from "./Logo";
 
 export function Footer() {
@@ -40,7 +40,7 @@ export function Footer() {
               <li className="flex gap-2"><Mail className="w-4 h-4 mt-0.5 text-primary shrink-0" /> hello@sunberq.in</li>
             </ul>
             <div className="mt-5 flex gap-3">
-              {[Linkedin, Instagram, Facebook].map((Icon, i) => (
+              {[Globe, Share2, AtSign].map((Icon, i) => (
                 <a key={i} href="#" aria-label="social" className="w-9 h-9 rounded-full glass-dark inline-flex items-center justify-center hover:bg-primary hover:text-white transition">
                   <Icon className="w-4 h-4" />
                 </a>

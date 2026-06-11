@@ -29,7 +29,7 @@ export function Navbar() {
         scrolled ? "glass shadow-soft" : "bg-transparent"
       }`}
     >
-      <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+      <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 sm:h-24 flex items-center justify-between">
         <Link to="/" className="z-50" onClick={() => setOpen(false)} aria-label="SunBERQ home">
           <Logo variant={scrolled || open ? "dark" : "light"} />
         </Link>

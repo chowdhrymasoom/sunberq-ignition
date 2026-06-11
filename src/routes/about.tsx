@@ -52,9 +52,18 @@ function About() {
           <Reveal>
             <h2 className="text-3xl sm:text-4xl font-bold leading-tight">Our vision</h2>
             <p className="mt-4 text-muted-foreground leading-relaxed">
-              Placeholder vision text — we believe the future of energy is decentralised, intelligent and Indian.
-              SunBERQ exists to put high-quality solar within reach of every rooftop, every factory and every farm.
-              We combine global-grade engineering with local execution to deliver systems that pay back faster and last longer.
+              To become a globally trusted renewable energy manufacturing company driving India's
+              transition towards a cleaner, smarter, and energy-secure future.
+            </p>
+            <p className="mt-4 text-muted-foreground leading-relaxed">
+              At SunBERQ, we envision a sustainable ecosystem powered by advanced Solar PV technology,
+              intelligent energy storage, and efficient power solutions. Through innovation, manufacturing
+              excellence, and strong business partnerships, we enable industries, businesses and energy
+              providers to adopt reliable renewable energy at scale — reducing energy dependence,
+              minimising wastage, and strengthening clean energy infrastructure across every market we serve.
+            </p>
+            <p className="mt-4 italic text-primary font-medium">
+              "Driven by Innovation. Powered by the Sun."
             </p>
             <div className="mt-8 grid sm:grid-cols-2 gap-4">
               {pillars.map((p) => (

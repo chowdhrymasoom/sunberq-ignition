@@ -13,9 +13,9 @@ export function Logo({
     <img
       src={src}
       alt="SunBERQ"
-      width={180}
-      height={60}
-      className={`h-9 sm:h-10 w-auto select-none ${className}`}
+      width={240}
+      height={80}
+      className={`h-14 sm:h-16 lg:h-20 w-auto select-none ${className}`}
       draggable={false}
     />
   );

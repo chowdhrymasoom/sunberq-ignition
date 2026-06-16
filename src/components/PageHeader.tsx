@@ -12,20 +12,21 @@ export function PageHeader({
   children?: ReactNode;
 }) {
   return (
-    <section className="relative pt-32 pb-16 sm:pt-40 sm:pb-24 overflow-hidden">
-      <div className="absolute inset-0 bg-sun-glow opacity-60 pointer-events-none" />
-      <div className="absolute -top-32 -right-32 w-[500px] h-[500px] rounded-full bg-gradient-solar opacity-10 blur-3xl" />
-      <div className="relative max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+    <section className="relative pt-36 pb-14 sm:pt-44 sm:pb-20 bg-surface border-b border-border/60">
+      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
         {eyebrow && (
-          <span className="inline-block px-3 py-1 rounded-full bg-accent text-xs font-semibold tracking-widest uppercase text-primary">
-            {eyebrow}
-          </span>
+          <div className="flex items-center gap-3">
+            <span className="h-px w-8 bg-primary" />
+            <span className="text-xs font-semibold tracking-[0.18em] uppercase text-primary">
+              {eyebrow}
+            </span>
+          </div>
         )}
-        <h1 className="mt-4 text-4xl sm:text-5xl md:text-6xl font-bold leading-[1.05]">
+        <h1 className="mt-5 text-4xl sm:text-5xl md:text-6xl font-bold leading-[1.05] tracking-tight max-w-3xl">
           {title}
         </h1>
         {description && (
-          <p className="mt-5 text-base sm:text-lg text-muted-foreground max-w-2xl mx-auto">
+          <p className="mt-5 text-base sm:text-lg text-muted-foreground max-w-2xl leading-relaxed">
             {description}
           </p>
         )}

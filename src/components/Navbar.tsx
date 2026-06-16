@@ -1,6 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
-import { Menu, X } from "lucide-react";
+import { Menu, X, Phone } from "lucide-react";
 import { Logo } from "./Logo";
 
 const links = [
@@ -25,13 +25,13 @@ export function Navbar() {
 
   return (
     <header
-      className={`fixed top-0 inset-x-0 z-50 transition-all duration-300 ${
-        scrolled ? "glass shadow-soft" : "bg-transparent"
+      className={`fixed top-0 inset-x-0 z-50 transition-all duration-300 bg-background/85 backdrop-blur-xl ${
+        scrolled ? "border-b border-border/70 shadow-soft" : "border-b border-transparent"
       }`}
     >
       <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 sm:h-24 flex items-center justify-between">
         <Link to="/" className="z-50" onClick={() => setOpen(false)} aria-label="SunBERQ home">
-          <Logo variant={scrolled || open ? "dark" : "light"} />
+          <Logo variant="dark" />
         </Link>
 
         <ul className="hidden lg:flex items-center gap-1">
@@ -39,8 +39,8 @@ export function Navbar() {
             <li key={l.to}>
               <Link
                 to={l.to}
-                className="px-4 py-2 text-sm font-medium text-foreground/80 hover:text-foreground transition-colors rounded-full hover:bg-accent/60"
-                activeProps={{ className: "px-4 py-2 text-sm font-medium text-primary rounded-full bg-accent/60" }}
+                className="px-4 py-2 text-sm font-medium text-foreground/75 hover:text-foreground transition-colors rounded-full"
+                activeProps={{ className: "px-4 py-2 text-sm font-semibold text-primary rounded-full" }}
                 activeOptions={{ exact: l.to === "/" }}
               >
                 {l.label}
@@ -49,12 +49,15 @@ export function Navbar() {
           ))}
         </ul>
 
-        <div className="hidden lg:flex items-center gap-3">
+        <div className="hidden lg:flex items-center gap-4">
+          <a href="tel:+910000000000" className="inline-flex items-center gap-2 text-sm font-medium text-foreground/80 hover:text-primary transition-colors">
+            <Phone className="w-4 h-4" /> +91 00000 00000
+          </a>
           <Link
             to="/quote"
-            className="inline-flex items-center justify-center h-10 px-5 rounded-full bg-graphite text-graphite-foreground text-sm font-semibold hover:bg-primary transition-colors"
+            className="inline-flex items-center justify-center h-10 px-5 rounded-full bg-primary text-primary-foreground text-sm font-semibold hover:bg-primary/90 shadow-soft transition-all hover:-translate-y-0.5"
           >
-            Get Quote
+            Free Quote
           </Link>
         </div>
 
@@ -89,7 +92,7 @@ export function Navbar() {
           <Link
             to="/quote"
             onClick={() => setOpen(false)}
-            className="mt-6 inline-flex items-center justify-center h-12 px-6 rounded-full bg-gradient-solar text-white font-semibold shadow-glow"
+            className="mt-6 inline-flex items-center justify-center h-12 px-6 rounded-full bg-primary text-primary-foreground font-semibold shadow-soft"
           >
             Get a Free Quote
           </Link>

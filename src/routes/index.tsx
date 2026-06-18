@@ -117,6 +117,40 @@ function subsidyFor(kW: number) {
 
 function Home_() {
   const [bill, setBill] = useState("");
+  const [estimate, setEstimate] = useState<null | {
+    systemKw: number;
+    cost: number;
+    subsidy: number;
+    net: number;
+    monthlySavings: number;
+    paybackYears: number;
+    co2: number;
+  }>(null);
+
+  function calculate(e: React.FormEvent) {
+    e.preventDefault();
+    const monthlyBill = Number(bill.replace(/[^0-9.]/g, ""));
+    if (!monthlyBill || monthlyBill < 500) {
+      setEstimate(null);
+      return;
+    }
+    const tariff = 8; // ₹/kWh average
+    const monthlyKwh = monthlyBill / tariff;
+    const dailyKwh = monthlyKwh / 30;
+    const sunHours = 4.5;
+    const systemKw = Math.max(1, Math.round((dailyKwh / sunHours) * 2) / 2); // 0.5 kW steps
+    const cost = systemKw * 55000;
+    const subsidy = subsidyFor(systemKw);
+    const net = Math.max(0, cost - subsidy);
+    const monthlySavings = Math.round(monthlyBill * 0.9);
+    const paybackYears = Math.max(2, +(net / (monthlySavings * 12)).toFixed(1));
+    const co2 = +((systemKw * 1200 * 0.82) / 1000).toFixed(2); // tonnes/year
+    setEstimate({ systemKw, cost, subsidy, net, monthlySavings, paybackYears, co2 });
+    setTimeout(() => {
+      document.getElementById("estimate-result")?.scrollIntoView({ behavior: "smooth", block: "center" });
+    }, 50);
+  }
+
   return (
     <>
       {/* HERO — light split layout */}

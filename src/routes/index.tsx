@@ -2,7 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { motion } from "framer-motion";
 import {
   ArrowRight, Sun, Zap, Battery, ShieldCheck, Smartphone,
-  Wrench, Leaf, Home as HomeIcon, Building2, Factory, Sprout, GraduationCap,
+  Leaf, Home as HomeIcon, Building2, Factory, Sprout, GraduationCap,
   CheckCircle2, Star, Quote, IndianRupee, Phone, Calculator,
 } from "lucide-react";
 import { useState } from "react";

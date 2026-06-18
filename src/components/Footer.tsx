@@ -8,9 +8,12 @@ export function Footer() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-4">
           <div>
-            <Logo variant="dark" />
-            <p className="mt-4 text-sm text-muted-foreground leading-relaxed max-w-xs">
-              Powering India with smarter solar energy. Panels, inverters and batteries engineered for the future.
+            <Logo variant="dark" size="md" showWordmark />
+            <p className="mt-5 text-sm font-semibold tracking-wide text-primary uppercase">
+              Driven by Innovation. Powered by the Sun.
+            </p>
+            <p className="mt-3 text-sm text-muted-foreground leading-relaxed max-w-xs">
+              A renewable energy manufacturing company driving India's transition to a cleaner, smarter, energy-secure future.
             </p>
           </div>
           <div>

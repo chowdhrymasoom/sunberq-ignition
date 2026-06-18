@@ -2,7 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { motion } from "framer-motion";
 import {
   ArrowRight, Sun, Zap, Battery, ShieldCheck, Smartphone,
-  Wrench, Leaf, Home as HomeIcon, Building2, Factory, Sprout, GraduationCap,
+  Leaf, Home as HomeIcon, Building2, Factory, Sprout, GraduationCap,
   CheckCircle2, Star, Quote, IndianRupee, Phone, Calculator,
 } from "lucide-react";
 import { useState } from "react";
@@ -57,17 +57,17 @@ export const Route = createFileRoute("/")({
 });
 
 const stats = [
-  { label: "MW Installed", value: 120, suffix: "+" },
-  { label: "Happy Clients", value: 8500, suffix: "+" },
-  { label: "Cities Served", value: 140, suffix: "" },
-  { label: "Tonnes CO₂ Saved", value: 95000, suffix: "+" },
+  { label: "Module Power Range", value: 650, suffix: " Wp" },
+  { label: "Panel Efficiency", value: 23, suffix: "%+" },
+  { label: "Battery Cycle Life", value: 6000, suffix: "" },
+  { label: "Inverter MPPT Efficiency", value: 99, suffix: "%" },
 ];
 
 const benefits = [
-  { icon: IndianRupee, title: "Up to 90% bill savings", desc: "Most homes break even in 3–4 years, then enjoy 21+ years of nearly-free power." },
-  { icon: ShieldCheck, title: "25-year warranty", desc: "Linear performance warranty on panels and full system performance guarantee." },
-  { icon: Smartphone, title: "Live monitoring", desc: "Track generation, savings and battery health from one mobile app." },
-  { icon: Wrench, title: "On-ground service", desc: "Local engineers across 140+ cities, 48-hour response SLA." },
+  { icon: Zap, title: "High-efficiency PV modules", desc: "Mono PERC, N-Type TOPCon and bifacial designs delivering ~23%+ efficiency across rooftops, factories and ground-mount plants." },
+  { icon: ShieldCheck, title: "Engineered for harsh conditions", desc: "IP68 junction boxes, low-iron tempered glass and corrosion-resistant frames rated for −40°C to +85°C operation." },
+  { icon: Battery, title: "LFP & Sodium-Ion storage", desc: "LiFePO4 packs with ~6,000-cycle life and emerging Sodium-Ion chemistry — modular, BMS-protected, hybrid-inverter ready." },
+  { icon: Smartphone, title: "Smart inverter intelligence", desc: ">99% MPPT, anti-islanding, grid sync and Wi-Fi / RS485 / GSM remote monitoring on every system." },
 ];
 
 const industries = [
@@ -86,9 +86,9 @@ const steps = [
 ];
 
 const testimonials = [
-  { name: "Anjali Mehra", role: "Homeowner · Pune", text: "Power bill dropped 92% in the first quarter. The SunBERQ app is genuinely useful — I check generation daily.", rating: 5 },
-  { name: "Ravi Sharma", role: "Plant Head · Indore", text: "A 600 kWp rooftop commissioned in under five weeks. Clean execution, transparent reporting.", rating: 5 },
-  { name: "Dr. Priya Iyer", role: "Director · Education Trust", text: "We power three campuses with SunBERQ. The battery backup keeps labs running through any outage.", rating: 5 },
+  { name: "C&I Project Lead · Pune", role: "600 kWp rooftop", text: "SunBERQ's TOPCon modules and hybrid inverter stack delivered the generation numbers they promised — clean execution, transparent reporting.", rating: 5 },
+  { name: "Plant Head · Indore", role: "Manufacturing facility", text: "Battery backup keeps our critical loads running through every grid event. The LFP packs have held capacity beautifully.", rating: 5 },
+  { name: "Director · Education Trust", role: "Multi-campus install", text: "Three campuses powered by SunBERQ. App-based monitoring gives us live visibility on generation across sites.", rating: 5 },
 ];
 
 const gallery = [
@@ -100,15 +100,57 @@ const gallery = [
 ];
 
 const faqs = [
-  { q: "How much subsidy can I claim under PM Surya Ghar?", a: "Eligible homeowners can claim up to ₹78,000 in central subsidy plus state incentives. Our team handles the entire paperwork and disbursement for you." },
-  { q: "How long is the payback period?", a: "For most residential rooftops in India, payback is 3–5 years. After that you enjoy 20+ years of nearly-free electricity from a 25-year-warranted system." },
-  { q: "Do solar panels work during cloudy weather and monsoon?", a: "Yes — modern Mono PERC and TOPCon panels generate meaningful power even in diffused light. Battery storage keeps you covered during extended bad weather." },
-  { q: "What about net metering?", a: "We file your net-metering application and coordinate with the local discom. Excess generation gets credited to your account and offsets night-time consumption." },
-  { q: "Do you provide service after installation?", a: "Yes. Every SunBERQ system comes with a 25-year performance warranty, free annual maintenance for the first two years, and a pan-India service network." },
+  { q: "What module technologies does SunBERQ use?", a: "Advanced Mono PERC and N-Type TOPCon cells, plus bifacial modules that capture reflected sunlight from both sides. Power range 500–650 Wp with ~23%+ efficiency and 1500 V DC system voltage." },
+  { q: "Which battery chemistries are available?", a: "Lithium Iron Phosphate (LiFePO4 / LFP) packs with ~6,000-cycle life, high thermal safety and modular scalability — plus next-generation Sodium-Ion systems as a future-ready alternative." },
+  { q: "What inverter types do you offer?", a: "On-grid, hybrid and off-grid inverters with >99% MPPT efficiency, up to 97–98% peak efficiency, DC input 100–1000 V, single or three phase output, PF ≥0.99 and <3% THD." },
+  { q: "How are systems monitored?", a: "Every inverter ships with remote monitoring options (Wi-Fi, RS485 or GSM), intelligent MPPT tracking, anti-islanding, over-voltage / over-current / short-circuit protection and DSP-based fast response control." },
+  { q: "What are typical applications?", a: "Industrial rooftops, manufacturing units, logistics warehouses, commercial buildings, large-scale ground-mount plants, residential rooftops and hybrid solar + battery installations." },
 ];
+
+// PM Surya Ghar subsidy table (residential, kW → ₹)
+function subsidyFor(kW: number) {
+  if (kW <= 0) return 0;
+  if (kW < 2) return 30000;
+  if (kW < 3) return 60000;
+  return 78000;
+}
 
 function Home_() {
   const [bill, setBill] = useState("");
+  const [estimate, setEstimate] = useState<null | {
+    systemKw: number;
+    cost: number;
+    subsidy: number;
+    net: number;
+    monthlySavings: number;
+    paybackYears: number;
+    co2: number;
+  }>(null);
+
+  function calculate(e: React.FormEvent) {
+    e.preventDefault();
+    const monthlyBill = Number(bill.replace(/[^0-9.]/g, ""));
+    if (!monthlyBill || monthlyBill < 500) {
+      setEstimate(null);
+      return;
+    }
+    const tariff = 8; // ₹/kWh average
+    const monthlyKwh = monthlyBill / tariff;
+    const dailyKwh = monthlyKwh / 30;
+    const sunHours = 4.5;
+    const systemKw = Math.max(1, Math.round((dailyKwh / sunHours) * 2) / 2); // 0.5 kW steps
+    const cost = systemKw * 55000;
+    const subsidy = subsidyFor(systemKw);
+    const net = Math.max(0, cost - subsidy);
+    const monthlySavings = Math.round(monthlyBill * 0.9);
+    const paybackYears = Math.max(2, +(net / (monthlySavings * 12)).toFixed(1));
+    const co2 = +((systemKw * 1200 * 0.82) / 1000).toFixed(2); // tonnes/year
+    setEstimate({ systemKw, cost, subsidy, net, monthlySavings, paybackYears, co2 });
+    setTimeout(() => {
+      document.getElementById("estimate-result")?.scrollIntoView({ behavior: "smooth", block: "center" });
+    }, 50);
+  }
+
   return (
     <>
       {/* HERO — light split layout */}
@@ -249,35 +291,78 @@ function Home_() {
       </section>
 
       {/* SAVINGS CALCULATOR STRIP */}
-      <section className="py-14">
+      <section className="py-14" id="estimator">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <Reveal>
-            <div className="rounded-[2rem] bg-surface-cream border border-border p-8 sm:p-12 grid lg:grid-cols-12 gap-8 items-center">
-              <div className="lg:col-span-7">
-                <div className="text-xs font-semibold tracking-[0.18em] uppercase text-primary">2-minute estimate</div>
-                <h3 className="mt-3 text-2xl sm:text-4xl font-bold leading-tight">
-                  See how much you'll save with solar.
-                </h3>
-                <p className="mt-3 text-muted-foreground">Just enter your average monthly electricity bill — we'll show your indicative savings and subsidy.</p>
-              </div>
-              <form
-                className="lg:col-span-5 flex flex-col sm:flex-row gap-3 bg-card border border-border rounded-2xl p-3 shadow-soft"
-                onSubmit={(e) => { e.preventDefault(); window.location.href = "/quote"; }}
-              >
-                <div className="flex-1 flex items-center gap-2 px-3">
-                  <IndianRupee className="w-4 h-4 text-muted-foreground" />
-                  <input
-                    value={bill}
-                    onChange={(e) => setBill(e.target.value)}
-                    placeholder="Monthly bill (₹)"
-                    inputMode="numeric"
-                    className="w-full h-11 bg-transparent outline-none text-base"
-                  />
+            <div className="rounded-[2rem] bg-surface-cream border border-border p-8 sm:p-12">
+              <div className="grid lg:grid-cols-12 gap-8 items-center">
+                <div className="lg:col-span-7">
+                  <div className="text-xs font-semibold tracking-[0.18em] uppercase text-primary">Instant solar estimate</div>
+                  <h3 className="mt-3 text-2xl sm:text-4xl font-bold leading-tight">
+                    See your system size, subsidy &amp; payback — instantly.
+                  </h3>
+                  <p className="mt-3 text-muted-foreground">Enter your average monthly electricity bill. We calculate the right system size, PM Surya Ghar subsidy and payback right here — no form filling, no waiting.</p>
                 </div>
-                <button type="submit" className="inline-flex items-center justify-center gap-2 h-11 px-6 rounded-xl bg-primary text-primary-foreground font-semibold hover:-translate-y-0.5 transition-transform shrink-0">
-                  Calculate <ArrowRight className="w-4 h-4" />
-                </button>
-              </form>
+                <form
+                  className="lg:col-span-5 flex flex-col sm:flex-row gap-3 bg-card border border-border rounded-2xl p-3 shadow-soft"
+                  onSubmit={calculate}
+                >
+                  <div className="flex-1 flex items-center gap-2 px-3">
+                    <IndianRupee className="w-4 h-4 text-muted-foreground" />
+                    <input
+                      value={bill}
+                      onChange={(e) => setBill(e.target.value)}
+                      placeholder="Monthly bill (₹)"
+                      inputMode="numeric"
+                      className="w-full h-11 bg-transparent outline-none text-base"
+                    />
+                  </div>
+                  <button type="submit" className="inline-flex items-center justify-center gap-2 h-11 px-6 rounded-xl bg-primary text-primary-foreground font-semibold hover:-translate-y-0.5 transition-transform shrink-0">
+                    Calculate <ArrowRight className="w-4 h-4" />
+                  </button>
+                </form>
+              </div>
+
+              {estimate && (
+                <div id="estimate-result" className="mt-10 grid md:grid-cols-2 lg:grid-cols-4 gap-4">
+                  {[
+                    { k: "Recommended system", v: `${estimate.systemKw} kW`, sub: "Mono PERC / TOPCon" },
+                    { k: "Indicative cost", v: `₹ ${estimate.cost.toLocaleString("en-IN")}`, sub: "Turnkey, installed" },
+                    { k: "PM Surya Ghar subsidy", v: `₹ ${estimate.subsidy.toLocaleString("en-IN")}`, sub: "Direct benefit transfer" },
+                    { k: "Your net investment", v: `₹ ${estimate.net.toLocaleString("en-IN")}`, sub: "After subsidy" },
+                    { k: "Monthly savings", v: `₹ ${estimate.monthlySavings.toLocaleString("en-IN")}`, sub: "≈ 90% of your current bill" },
+                    { k: "Payback period", v: `${estimate.paybackYears} yrs`, sub: "Then 20+ years near-free power" },
+                    { k: "CO₂ saved / year", v: `${estimate.co2} t`, sub: "Equivalent of ~50 trees" },
+                    { k: "Next step", v: "Free site survey", sub: "Engineer visit in 48 hours", cta: true },
+                  ].map((card) => (
+                    <div
+                      key={card.k}
+                      className={`p-5 rounded-2xl border ${
+                        card.cta
+                          ? "bg-primary text-primary-foreground border-primary"
+                          : "bg-card border-border"
+                      }`}
+                    >
+                      <div className={`text-[11px] font-semibold tracking-wider uppercase ${card.cta ? "text-primary-foreground/80" : "text-muted-foreground"}`}>
+                        {card.k}
+                      </div>
+                      <div className={`mt-2 text-2xl font-display font-bold ${card.cta ? "" : "text-foreground"}`}>{card.v}</div>
+                      <div className={`mt-1 text-xs ${card.cta ? "text-primary-foreground/85" : "text-muted-foreground"}`}>{card.sub}</div>
+                      {card.cta && (
+                        <Link
+                          to="/quote"
+                          className="mt-4 inline-flex items-center gap-2 h-9 px-4 rounded-full bg-card text-foreground font-semibold text-sm shadow-soft"
+                        >
+                          Book survey <ArrowRight className="w-3.5 h-3.5" />
+                        </Link>
+                      )}
+                    </div>
+                  ))}
+                  <p className="md:col-span-2 lg:col-span-4 text-xs text-muted-foreground">
+                    * Indicative figures based on ₹8/kWh average tariff and 4.5 peak sun-hours. Final design, cost and subsidy depend on site survey, sanctioned load and discom policy.
+                  </p>
+                </div>
+              )}
             </div>
           </Reveal>
         </div>
@@ -408,16 +493,14 @@ function Home_() {
               Indian engineering for a renewable future.
             </h2>
             <p className="mt-5 text-muted-foreground leading-relaxed">
-              SunBERQ designs and installs next-generation solar systems with one mission — make clean energy
-              the smartest choice for every Indian home and business. Panels in partnership with Cosmic PV Power,
-              inverters with Energiaa, and batteries assembled at our facility in Aligarh, Uttar Pradesh.
+              SunBERQ is a renewable energy manufacturing company building India's energy-secure future through advanced Solar PV technology, intelligent energy storage and efficient power solutions — designed for industries, businesses and energy providers at scale.
             </p>
             <ul className="mt-6 space-y-3">
               {[
-                "Renewable energy vision led by Indian engineering",
-                "Battery assembly facility in Aligarh, UP",
-                "Quality-focused supply chain & white-label partnerships",
-                "Designed for reliability across the Indian climate",
+                "High-efficiency Mono PERC, N-Type TOPCon & bifacial PV modules",
+                "Lithium (LFP) and emerging Sodium-Ion battery storage systems",
+                "On-grid, hybrid and off-grid smart inverters with remote monitoring",
+                "Battery assembly facility in Aligarh, Uttar Pradesh",
               ].map((t) => (
                 <li key={t} className="flex gap-3 text-sm">
                   <CheckCircle2 className="w-5 h-5 text-primary shrink-0" />

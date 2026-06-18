@@ -57,17 +57,17 @@ export const Route = createFileRoute("/")({
 });
 
 const stats = [
-  { label: "MW Installed", value: 120, suffix: "+" },
-  { label: "Happy Clients", value: 8500, suffix: "+" },
-  { label: "Cities Served", value: 140, suffix: "" },
-  { label: "Tonnes CO₂ Saved", value: 95000, suffix: "+" },
+  { label: "Module Power Range", value: 650, suffix: " Wp" },
+  { label: "Panel Efficiency", value: 23, suffix: "%+" },
+  { label: "Battery Cycle Life", value: 6000, suffix: "" },
+  { label: "Inverter MPPT Efficiency", value: 99, suffix: "%" },
 ];
 
 const benefits = [
-  { icon: IndianRupee, title: "Up to 90% bill savings", desc: "Most homes break even in 3–4 years, then enjoy 21+ years of nearly-free power." },
-  { icon: ShieldCheck, title: "25-year warranty", desc: "Linear performance warranty on panels and full system performance guarantee." },
-  { icon: Smartphone, title: "Live monitoring", desc: "Track generation, savings and battery health from one mobile app." },
-  { icon: Wrench, title: "On-ground service", desc: "Local engineers across 140+ cities, 48-hour response SLA." },
+  { icon: Zap, title: "High-efficiency PV modules", desc: "Mono PERC, N-Type TOPCon and bifacial designs delivering ~23%+ efficiency across rooftops, factories and ground-mount plants." },
+  { icon: ShieldCheck, title: "Engineered for harsh conditions", desc: "IP68 junction boxes, low-iron tempered glass and corrosion-resistant frames rated for −40°C to +85°C operation." },
+  { icon: Battery, title: "LFP & Sodium-Ion storage", desc: "LiFePO4 packs with ~6,000-cycle life and emerging Sodium-Ion chemistry — modular, BMS-protected, hybrid-inverter ready." },
+  { icon: Smartphone, title: "Smart inverter intelligence", desc: ">99% MPPT, anti-islanding, grid sync and Wi-Fi / RS485 / GSM remote monitoring on every system." },
 ];
 
 const industries = [
@@ -86,9 +86,9 @@ const steps = [
 ];
 
 const testimonials = [
-  { name: "Anjali Mehra", role: "Homeowner · Pune", text: "Power bill dropped 92% in the first quarter. The SunBERQ app is genuinely useful — I check generation daily.", rating: 5 },
-  { name: "Ravi Sharma", role: "Plant Head · Indore", text: "A 600 kWp rooftop commissioned in under five weeks. Clean execution, transparent reporting.", rating: 5 },
-  { name: "Dr. Priya Iyer", role: "Director · Education Trust", text: "We power three campuses with SunBERQ. The battery backup keeps labs running through any outage.", rating: 5 },
+  { name: "C&I Project Lead · Pune", role: "600 kWp rooftop", text: "SunBERQ's TOPCon modules and hybrid inverter stack delivered the generation numbers they promised — clean execution, transparent reporting.", rating: 5 },
+  { name: "Plant Head · Indore", role: "Manufacturing facility", text: "Battery backup keeps our critical loads running through every grid event. The LFP packs have held capacity beautifully.", rating: 5 },
+  { name: "Director · Education Trust", role: "Multi-campus install", text: "Three campuses powered by SunBERQ. App-based monitoring gives us live visibility on generation across sites.", rating: 5 },
 ];
 
 const gallery = [
@@ -100,12 +100,20 @@ const gallery = [
 ];
 
 const faqs = [
-  { q: "How much subsidy can I claim under PM Surya Ghar?", a: "Eligible homeowners can claim up to ₹78,000 in central subsidy plus state incentives. Our team handles the entire paperwork and disbursement for you." },
-  { q: "How long is the payback period?", a: "For most residential rooftops in India, payback is 3–5 years. After that you enjoy 20+ years of nearly-free electricity from a 25-year-warranted system." },
-  { q: "Do solar panels work during cloudy weather and monsoon?", a: "Yes — modern Mono PERC and TOPCon panels generate meaningful power even in diffused light. Battery storage keeps you covered during extended bad weather." },
-  { q: "What about net metering?", a: "We file your net-metering application and coordinate with the local discom. Excess generation gets credited to your account and offsets night-time consumption." },
-  { q: "Do you provide service after installation?", a: "Yes. Every SunBERQ system comes with a 25-year performance warranty, free annual maintenance for the first two years, and a pan-India service network." },
+  { q: "What module technologies does SunBERQ use?", a: "Advanced Mono PERC and N-Type TOPCon cells, plus bifacial modules that capture reflected sunlight from both sides. Power range 500–650 Wp with ~23%+ efficiency and 1500 V DC system voltage." },
+  { q: "Which battery chemistries are available?", a: "Lithium Iron Phosphate (LiFePO4 / LFP) packs with ~6,000-cycle life, high thermal safety and modular scalability — plus next-generation Sodium-Ion systems as a future-ready alternative." },
+  { q: "What inverter types do you offer?", a: "On-grid, hybrid and off-grid inverters with >99% MPPT efficiency, up to 97–98% peak efficiency, DC input 100–1000 V, single or three phase output, PF ≥0.99 and <3% THD." },
+  { q: "How are systems monitored?", a: "Every inverter ships with remote monitoring options (Wi-Fi, RS485 or GSM), intelligent MPPT tracking, anti-islanding, over-voltage / over-current / short-circuit protection and DSP-based fast response control." },
+  { q: "What are typical applications?", a: "Industrial rooftops, manufacturing units, logistics warehouses, commercial buildings, large-scale ground-mount plants, residential rooftops and hybrid solar + battery installations." },
 ];
+
+// PM Surya Ghar subsidy table (residential, kW → ₹)
+function subsidyFor(kW: number) {
+  if (kW <= 0) return 0;
+  if (kW < 2) return 30000;
+  if (kW < 3) return 60000;
+  return 78000;
+}
 
 function Home_() {
   const [bill, setBill] = useState("");

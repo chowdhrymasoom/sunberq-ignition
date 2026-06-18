@@ -21,11 +21,11 @@ export const Route = createFileRoute("/about")({
 });
 
 const timeline = [
-  { year: "2022", title: "Founded", desc: "SunBERQ established with a vision to bring premium solar to India." },
-  { year: "2023", title: "Panel partnership", desc: "Strategic supply tie-up with Cosmic PV Power for panel manufacturing." },
-  { year: "2024", title: "Aligarh facility", desc: "Battery assembly and quality lab commissioned in Uttar Pradesh." },
-  { year: "2025", title: "Inverter line", desc: "White-labeled smart inverters launched with Energiaa." },
-  { year: "2026", title: "Pan-India network", desc: "Service & dealer network expanded to 140+ cities." },
+  { year: "2022", title: "Founded", desc: "SunBERQ established with a vision to build a globally trusted renewable energy manufacturing company." },
+  { year: "2023", title: "PV module line", desc: "High-efficiency Mono PERC and TOPCon modules introduced for C&I applications." },
+  { year: "2024", title: "Aligarh facility", desc: "Lithium battery assembly and quality lab commissioned in Uttar Pradesh." },
+  { year: "2025", title: "Smart inverters", desc: "On-grid, hybrid and off-grid inverter portfolio launched with remote monitoring." },
+  { year: "2026", title: "Storage expansion", desc: "Sodium-Ion battery systems added — a future-ready alternative to lithium storage." },
 ];
 
 const pillars = [

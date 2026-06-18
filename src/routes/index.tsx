@@ -291,35 +291,78 @@ function Home_() {
       </section>
 
       {/* SAVINGS CALCULATOR STRIP */}
-      <section className="py-14">
+      <section className="py-14" id="estimator">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <Reveal>
-            <div className="rounded-[2rem] bg-surface-cream border border-border p-8 sm:p-12 grid lg:grid-cols-12 gap-8 items-center">
-              <div className="lg:col-span-7">
-                <div className="text-xs font-semibold tracking-[0.18em] uppercase text-primary">2-minute estimate</div>
-                <h3 className="mt-3 text-2xl sm:text-4xl font-bold leading-tight">
-                  See how much you'll save with solar.
-                </h3>
-                <p className="mt-3 text-muted-foreground">Just enter your average monthly electricity bill — we'll show your indicative savings and subsidy.</p>
-              </div>
-              <form
-                className="lg:col-span-5 flex flex-col sm:flex-row gap-3 bg-card border border-border rounded-2xl p-3 shadow-soft"
-                onSubmit={(e) => { e.preventDefault(); window.location.href = "/quote"; }}
-              >
-                <div className="flex-1 flex items-center gap-2 px-3">
-                  <IndianRupee className="w-4 h-4 text-muted-foreground" />
-                  <input
-                    value={bill}
-                    onChange={(e) => setBill(e.target.value)}
-                    placeholder="Monthly bill (₹)"
-                    inputMode="numeric"
-                    className="w-full h-11 bg-transparent outline-none text-base"
-                  />
+            <div className="rounded-[2rem] bg-surface-cream border border-border p-8 sm:p-12">
+              <div className="grid lg:grid-cols-12 gap-8 items-center">
+                <div className="lg:col-span-7">
+                  <div className="text-xs font-semibold tracking-[0.18em] uppercase text-primary">Instant solar estimate</div>
+                  <h3 className="mt-3 text-2xl sm:text-4xl font-bold leading-tight">
+                    See your system size, subsidy &amp; payback — instantly.
+                  </h3>
+                  <p className="mt-3 text-muted-foreground">Enter your average monthly electricity bill. We calculate the right system size, PM Surya Ghar subsidy and payback right here — no form filling, no waiting.</p>
                 </div>
-                <button type="submit" className="inline-flex items-center justify-center gap-2 h-11 px-6 rounded-xl bg-primary text-primary-foreground font-semibold hover:-translate-y-0.5 transition-transform shrink-0">
-                  Calculate <ArrowRight className="w-4 h-4" />
-                </button>
-              </form>
+                <form
+                  className="lg:col-span-5 flex flex-col sm:flex-row gap-3 bg-card border border-border rounded-2xl p-3 shadow-soft"
+                  onSubmit={calculate}
+                >
+                  <div className="flex-1 flex items-center gap-2 px-3">
+                    <IndianRupee className="w-4 h-4 text-muted-foreground" />
+                    <input
+                      value={bill}
+                      onChange={(e) => setBill(e.target.value)}
+                      placeholder="Monthly bill (₹)"
+                      inputMode="numeric"
+                      className="w-full h-11 bg-transparent outline-none text-base"
+                    />
+                  </div>
+                  <button type="submit" className="inline-flex items-center justify-center gap-2 h-11 px-6 rounded-xl bg-primary text-primary-foreground font-semibold hover:-translate-y-0.5 transition-transform shrink-0">
+                    Calculate <ArrowRight className="w-4 h-4" />
+                  </button>
+                </form>
+              </div>
+
+              {estimate && (
+                <div id="estimate-result" className="mt-10 grid md:grid-cols-2 lg:grid-cols-4 gap-4">
+                  {[
+                    { k: "Recommended system", v: `${estimate.systemKw} kW`, sub: "Mono PERC / TOPCon" },
+                    { k: "Indicative cost", v: `₹ ${estimate.cost.toLocaleString("en-IN")}`, sub: "Turnkey, installed" },
+                    { k: "PM Surya Ghar subsidy", v: `₹ ${estimate.subsidy.toLocaleString("en-IN")}`, sub: "Direct benefit transfer" },
+                    { k: "Your net investment", v: `₹ ${estimate.net.toLocaleString("en-IN")}`, sub: "After subsidy" },
+                    { k: "Monthly savings", v: `₹ ${estimate.monthlySavings.toLocaleString("en-IN")}`, sub: "≈ 90% of your current bill" },
+                    { k: "Payback period", v: `${estimate.paybackYears} yrs`, sub: "Then 20+ years near-free power" },
+                    { k: "CO₂ saved / year", v: `${estimate.co2} t`, sub: "Equivalent of ~50 trees" },
+                    { k: "Next step", v: "Free site survey", sub: "Engineer visit in 48 hours", cta: true },
+                  ].map((card) => (
+                    <div
+                      key={card.k}
+                      className={`p-5 rounded-2xl border ${
+                        card.cta
+                          ? "bg-primary text-primary-foreground border-primary"
+                          : "bg-card border-border"
+                      }`}
+                    >
+                      <div className={`text-[11px] font-semibold tracking-wider uppercase ${card.cta ? "text-primary-foreground/80" : "text-muted-foreground"}`}>
+                        {card.k}
+                      </div>
+                      <div className={`mt-2 text-2xl font-display font-bold ${card.cta ? "" : "text-foreground"}`}>{card.v}</div>
+                      <div className={`mt-1 text-xs ${card.cta ? "text-primary-foreground/85" : "text-muted-foreground"}`}>{card.sub}</div>
+                      {card.cta && (
+                        <Link
+                          to="/quote"
+                          className="mt-4 inline-flex items-center gap-2 h-9 px-4 rounded-full bg-card text-foreground font-semibold text-sm shadow-soft"
+                        >
+                          Book survey <ArrowRight className="w-3.5 h-3.5" />
+                        </Link>
+                      )}
+                    </div>
+                  ))}
+                  <p className="md:col-span-2 lg:col-span-4 text-xs text-muted-foreground">
+                    * Indicative figures based on ₹8/kWh average tariff and 4.5 peak sun-hours. Final design, cost and subsidy depend on site survey, sanctioned load and discom policy.
+                  </p>
+                </div>
+              )}
             </div>
           </Reveal>
         </div>
@@ -450,16 +493,14 @@ function Home_() {
               Indian engineering for a renewable future.
             </h2>
             <p className="mt-5 text-muted-foreground leading-relaxed">
-              SunBERQ designs and installs next-generation solar systems with one mission — make clean energy
-              the smartest choice for every Indian home and business. Panels in partnership with Cosmic PV Power,
-              inverters with Energiaa, and batteries assembled at our facility in Aligarh, Uttar Pradesh.
+              SunBERQ is a renewable energy manufacturing company building India's energy-secure future through advanced Solar PV technology, intelligent energy storage and efficient power solutions — designed for industries, businesses and energy providers at scale.
             </p>
             <ul className="mt-6 space-y-3">
               {[
-                "Renewable energy vision led by Indian engineering",
-                "Battery assembly facility in Aligarh, UP",
-                "Quality-focused supply chain & white-label partnerships",
-                "Designed for reliability across the Indian climate",
+                "High-efficiency Mono PERC, N-Type TOPCon & bifacial PV modules",
+                "Lithium (LFP) and emerging Sodium-Ion battery storage systems",
+                "On-grid, hybrid and off-grid smart inverters with remote monitoring",
+                "Battery assembly facility in Aligarh, Uttar Pradesh",
               ].map((t) => (
                 <li key={t} className="flex gap-3 text-sm">
                   <CheckCircle2 className="w-5 h-5 text-primary shrink-0" />

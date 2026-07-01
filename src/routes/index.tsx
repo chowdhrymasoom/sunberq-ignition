@@ -154,7 +154,7 @@ function Home_() {
   return (
     <>
       {/* HERO — light split layout */}
-      <section className="relative pt-28 sm:pt-32 pb-16 sm:pb-24 overflow-hidden">
+      <section className="relative pt-32 sm:pt-36 pb-16 sm:pb-24 overflow-hidden">
         <div className="absolute inset-0 bg-sun-glow opacity-60 pointer-events-none" />
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-12 gap-10 lg:gap-14 items-center">

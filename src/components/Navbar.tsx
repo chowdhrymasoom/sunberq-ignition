@@ -29,9 +29,9 @@ export function Navbar() {
         scrolled ? "border-b border-border/70 shadow-soft" : "border-b border-transparent"
       }`}
     >
-      <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 sm:h-24 flex items-center justify-between">
+      <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-24 sm:h-28 flex items-center justify-between">
         <Link to="/" className="z-50 group" onClick={() => setOpen(false)} aria-label="SunBERQ home">
-          <Logo variant="dark" size="md" showWordmark={false} />
+          <Logo variant="dark" size="lg" showWordmark={false} />
         </Link>
 
         <ul className="hidden lg:flex items-center gap-1">

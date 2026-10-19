@@ -2,13 +2,13 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
 import { Reveal } from "@/components/Reveal";
 import { PageHeader } from "@/components/PageHeader";
-import { Mail, Phone, MapPin, MessageCircle, Send, CheckCircle2 } from "lucide-react";
+import { Mail, Phone, MapPin, MessageCircle, Send, CheckCircle2, Building2 } from "lucide-react";
 
 export const Route = createFileRoute("/contact")({
   head: () => ({
     meta: [
       { title: "Contact SunBERQ — Talk to our solar experts" },
-      { name: "description", content: "Get in touch with SunBERQ. Battery assembly facility in Aligarh, Uttar Pradesh. WhatsApp, email or visit us." },
+      { name: "description", content: "Get in touch with SunBERQ. Corporate office at DLF Prime Tower, Okhla, New Delhi — manufacturing facility in Aligarh, Uttar Pradesh. WhatsApp, email or visit us." },
       { property: "og:title", content: "Contact SunBERQ" },
       { property: "og:description", content: "Reach our solar engineering team across India." },
       { property: "og:url", content: "/contact" },
@@ -78,7 +78,8 @@ function Contact() {
 
           <Reveal className="lg:col-span-2 space-y-4">
             {[
-              { icon: MapPin, title: "Aligarh Facility", text: "Battery Assembly Unit, Aligarh, Uttar Pradesh, India" },
+              { icon: Building2, title: "Corporate Office", text: "DPT 808B, F 79-80, 8th Floor, DLF Prime Tower, Okhla, New Delhi 110020" },
+              { icon: MapPin, title: "Manufacturing Facility", text: "Battery Assembly Unit, Aligarh, Uttar Pradesh, India" },
               { icon: Phone, title: "Call us", text: "+91 00000 00000 (Mon–Sat, 9am–7pm)" },
               { icon: Mail, title: "Email", text: "hello@sunberq.in" },
             ].map((c) => (
@@ -95,8 +96,8 @@ function Contact() {
             </a>
             <div className="rounded-2xl overflow-hidden border border-border/60 aspect-video">
               <iframe
-                title="SunBERQ Aligarh"
-                src="https://www.google.com/maps?q=Aligarh,+Uttar+Pradesh&output=embed"
+                title="SunBERQ corporate office — DLF Prime Tower, Okhla, New Delhi"
+                src="https://www.google.com/maps?q=DLF+Prime+Tower,+Okhla,+New+Delhi+110020&output=embed"
                 loading="lazy"
                 className="w-full h-full border-0"
               />

@@ -49,7 +49,7 @@ export const Route = createFileRoute("/")({
         url: "/",
         logo: "/favicon.ico",
         description: "Solar panels, inverters and battery solutions for India.",
-        address: { "@type": "PostalAddress", addressLocality: "Aligarh", addressRegion: "Uttar Pradesh", addressCountry: "IN" },
+        address: { "@type": "PostalAddress", streetAddress: "DPT 808B, F 79-80, 8th Floor, DLF Prime Tower, Okhla", addressLocality: "New Delhi", addressRegion: "Delhi", postalCode: "110020", addressCountry: "IN" },
       }),
     }],
   }),

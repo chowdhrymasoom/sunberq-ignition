@@ -621,8 +621,8 @@ function Home_() {
                   <Link to="/quote" className="inline-flex items-center gap-2 h-12 px-6 rounded-full bg-card text-foreground font-semibold shadow-soft hover:-translate-y-0.5 transition-transform">
                     Get Free Quote <ArrowRight className="w-4 h-4" />
                   </Link>
-                  <a href="tel:+910000000000" className="inline-flex items-center gap-2 h-12 px-6 rounded-full border border-primary-foreground/40 text-primary-foreground font-semibold hover:bg-primary-foreground/10 transition">
-                    <Phone className="w-4 h-4" /> +91 00000 00000
+                  <a href="tel:+919719358578" className="inline-flex items-center gap-2 h-12 px-6 rounded-full border border-primary-foreground/40 text-primary-foreground font-semibold hover:bg-primary-foreground/10 transition">
+                    <Phone className="w-4 h-4" /> +91 97193 58578
                   </a>
                 </div>
               </div>

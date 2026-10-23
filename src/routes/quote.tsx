@@ -227,7 +227,7 @@ function Result({ estimate }: { estimate: ReturnType<typeof useMemo> extends inf
           <div className="font-bold">Your request is in.</div>
           <div className="text-sm text-primary-foreground/85">Our engineer will confirm your site survey within one business day.</div>
         </div>
-        <a href="tel:+910000000000" className="inline-flex items-center gap-2 h-11 px-5 rounded-full bg-card text-foreground font-semibold shadow-soft">
+        <a href="tel:+919719358578" className="inline-flex items-center gap-2 h-11 px-5 rounded-full bg-card text-foreground font-semibold shadow-soft">
           Call SunBERQ
         </a>
       </div>

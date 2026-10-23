@@ -2,13 +2,13 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
 import { Reveal } from "@/components/Reveal";
 import { PageHeader } from "@/components/PageHeader";
-import { Mail, Phone, MapPin, MessageCircle, Send, CheckCircle2, Building2 } from "lucide-react";
+import { Mail, Phone, MessageCircle, Send, CheckCircle2, Building2 } from "lucide-react";
 
 export const Route = createFileRoute("/contact")({
   head: () => ({
     meta: [
       { title: "Contact SunBERQ — Talk to our solar experts" },
-      { name: "description", content: "Get in touch with SunBERQ. Corporate office at DLF Prime Tower, Okhla, New Delhi — manufacturing facility in Aligarh, Uttar Pradesh. WhatsApp, email or visit us." },
+      { name: "description", content: "Get in touch with SunBERQ. Corporate office at DLF Prime Tower, Okhla, New Delhi. WhatsApp, email or visit us." },
       { property: "og:title", content: "Contact SunBERQ" },
       { property: "og:description", content: "Reach our solar engineering team across India." },
       { property: "og:url", content: "/contact" },
@@ -79,9 +79,8 @@ function Contact() {
           <Reveal className="lg:col-span-2 space-y-4">
             {[
               { icon: Building2, title: "Corporate Office", text: "DPT 808B, F 79-80, 8th Floor, DLF Prime Tower, Okhla, New Delhi 110020" },
-              { icon: MapPin, title: "Manufacturing Facility", text: "Battery Assembly Unit, Aligarh, Uttar Pradesh, India" },
-              { icon: Phone, title: "Call us", text: "+91 00000 00000 (Mon–Sat, 9am–7pm)" },
-              { icon: Mail, title: "Email", text: "hello@sunberq.in" },
+              { icon: Phone, title: "Call us", text: "+91 97193 58578 (Mon–Sat, 9am–7pm)" },
+              { icon: Mail, title: "Email", text: "contact@sunberq.com" },
             ].map((c) => (
               <div key={c.title} className="p-6 rounded-2xl border border-border/60 bg-card hover:shadow-soft transition">
                 <c.icon className="w-6 h-6 text-primary" />
@@ -89,7 +88,7 @@ function Contact() {
                 <p className="mt-1 text-sm text-muted-foreground">{c.text}</p>
               </div>
             ))}
-            <a href="https://wa.me/910000000000" target="_blank" rel="noopener noreferrer" className="block p-6 rounded-2xl bg-gradient-solar text-white shadow-glow hover:scale-[1.02] transition">
+            <a href="https://wa.me/919719358578" target="_blank" rel="noopener noreferrer" className="block p-6 rounded-2xl bg-gradient-solar text-white shadow-glow hover:scale-[1.02] transition">
               <MessageCircle className="w-6 h-6" />
               <h3 className="mt-3 font-bold">Chat on WhatsApp</h3>
               <p className="mt-1 text-sm text-white/85">Fastest way to reach us.</p>

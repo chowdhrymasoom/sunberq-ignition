@@ -46,13 +46,23 @@ export function Navbar() {
                 {l.label}
               </Link>
             </li>
-          ))}
-        </ul>
+            ))}
+            <li>
+              <a
+                href="https://vendors.sunberq.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-4 py-2 text-sm font-medium text-foreground/75 hover:text-primary transition-colors rounded-full inline-block"
+              >
+                Vendors Directory
+              </a>
+            </li>
+          </ul>
 
-        <div className="hidden lg:flex items-center gap-4">
-          <a href="tel:+910000000000" className="inline-flex items-center gap-2 text-sm font-medium text-foreground/80 hover:text-primary transition-colors">
-            <Phone className="w-4 h-4" /> +91 00000 00000
-          </a>
+          <div className="hidden lg:flex items-center gap-4">
+            <a href="tel:+919719358578" className="inline-flex items-center gap-2 text-sm font-medium text-foreground/80 hover:text-primary transition-colors">
+              <Phone className="w-4 h-4" /> +91 97193 58578
+            </a>
           <Link
             to="/quote"
             className="inline-flex items-center justify-center h-10 px-5 rounded-full bg-primary text-primary-foreground text-sm font-semibold hover:bg-primary/90 shadow-soft transition-all hover:-translate-y-0.5"
@@ -89,6 +99,15 @@ export function Navbar() {
               {l.label}
             </Link>
           ))}
+          <a
+            href="https://vendors.sunberq.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={() => setOpen(false)}
+            className="text-2xl font-display font-semibold py-3 border-b border-border"
+          >
+            Vendors Directory
+          </a>
           <Link
             to="/quote"
             onClick={() => setOpen(false)}

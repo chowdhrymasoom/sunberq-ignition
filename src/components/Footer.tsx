@@ -38,9 +38,8 @@ export function Footer() {
             <h4 className="text-xs font-semibold uppercase tracking-[0.18em] text-foreground/70">Reach us</h4>
             <ul className="mt-4 space-y-3 text-sm text-foreground/80">
               <li className="flex gap-2"><Building2 className="w-4 h-4 mt-0.5 text-primary shrink-0" /><span><span className="block font-semibold text-foreground/90">Corporate Office</span>DPT 808B, F 79-80, 8th Floor, DLF Prime Tower, Okhla, New Delhi 110020</span></li>
-              <li className="flex gap-2"><MapPin className="w-4 h-4 mt-0.5 text-primary shrink-0" /><span><span className="block font-semibold text-foreground/90">Manufacturing Unit</span>Battery Assembly Unit, Aligarh, Uttar Pradesh, India</span></li>
-              <li className="flex gap-2"><Phone className="w-4 h-4 mt-0.5 text-primary shrink-0" /> +91 00000 00000</li>
-              <li className="flex gap-2"><Mail className="w-4 h-4 mt-0.5 text-primary shrink-0" /> hello@sunberq.in</li>
+              <li className="flex gap-2"><Phone className="w-4 h-4 mt-0.5 text-primary shrink-0" /> +91 97193 58578</li>
+              <li className="flex gap-2"><Mail className="w-4 h-4 mt-0.5 text-primary shrink-0" /> contact@sunberq.com</li>
             </ul>
             <div className="mt-5 flex gap-3">
               {[Globe, Share2, AtSign].map((Icon, i) => (
